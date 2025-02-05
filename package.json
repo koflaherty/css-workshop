@@ -33,6 +33,7 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
-		"firebase": "^11.2.0"
+		"firebase": "^11.2.0",
+		"prismjs": "^1.29.0"
 	}
 }

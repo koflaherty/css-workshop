@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { logout, realtimeDb, auth } from '$lib/firebase';
 	import { ref, set } from 'firebase/database';
+	import CssEditor from '$lib/components/CssEditor.svelte';
 
 	// Handle logout and redirect to the home page.
 	const handleLogout = async () => {
@@ -13,39 +14,36 @@
 		}
 	};
 
-	// Reactive variable to hold the CSS from the textbox.
-	let text: string = '';
-
-	// Reactive computed source document for the preview iframe.
-	$: srcDoc = `<html><head><style>${text}</style></head><body><div class="example-window">Example Content</div></body></html>`;
-
-	// Event handler to save CSS to realtime DB whenever the user types.
-	const handleInput = async (event: Event) => {
-		text = (event.target as HTMLTextAreaElement).value;
+	// Function to save CSS to realtime DB whenever the user types.
+	const handleCssChange = async (css: string) => {
 		try {
 			if (auth.currentUser) {
-				await set(ref(realtimeDb, `users/${auth.currentUser.uid}/text`), text);
+				await set(ref(realtimeDb, `users/${auth.currentUser.uid}/text`), css);
 			}
 		} catch (error) {
 			console.error("Error saving text:", error);
 		}
 	};
+
+	// Initial CSS for the three boxes
+	const initialCss = 
+`.box-a { background-color: red; width: 100px; height: 100px; }
+.box-b { background-color: green; width: 100px; height: 100px; }
+.box-c { background-color: blue; width: 100px; height: 100px; }`;
+
+	// HTML content for the three boxes
+	const htmlContent = `
+		<div class="box-a">Box A</div>
+		<div class="box-b">Box B</div>
+		<div class="box-c">Box C</div>
+	`;
 </script>
 
 <h1>Landing Page</h1>
 <p>You are now signed in anonymously. Welcome!</p>
 
-<!-- Updated textbox for real-time CSS input -->
-<textarea
-	placeholder="Type your CSS here..."
-	on:input={handleInput}
-	bind:value={text}
-	rows="4"
-	cols="50" />
-
-<!-- Preview window -->
-<h2>Example Window</h2>
-<iframe srcdoc={srcDoc} width="100%" height="200px" sandbox="allow-scripts" />
+<!-- Use the CssEditor component with a callback prop and HTML content -->
+<CssEditor initialCss={initialCss} html={htmlContent} onCssChange={handleCssChange} />
 
 <!-- Logout button -->
 <button on:click={handleLogout}>Logout</button>
