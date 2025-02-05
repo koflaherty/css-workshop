@@ -1,101 +1,141 @@
 <script lang="ts">
 	import Prism from 'prismjs';
-	import 'prismjs/themes/prism.css'; // You can choose a different theme if you like
+	import 'prismjs/themes/prism.css'; // Choose your preferred theme
 
 	export let initialCss: string = '';
 	export let onCssChange: (css: string) => void = () => {};
 	export let html: string = '';
 
+	// The text content of the editor
 	let text: string = initialCss;
 
-	// Reactive computed source document for the preview iframe.
-	$: srcDoc = `<html><head><style>${text}</style></head><body><div class="example-window">Example Content</div></body></html>`;
+	// Highlighted code computed via PrismJS
+	$: highlightedCss = Prism.highlight(text, Prism.languages.css, 'css');
+	
+	// Preview iframe document (optional)
+	$: srcDoc = `<html><head><style>${text}</style></head><body>${html}</body></html>`;
 
-	// Helper function to validate CSS using a detached document
-	const isValidCSS = (css: string): boolean => {
-		const iframe = document.createElement('iframe');
-		document.body.appendChild(iframe);
-		const style = iframe.contentDocument?.createElement('style');
-		if (style) {
-			style.textContent = css;
-			iframe.contentDocument?.head?.appendChild(style);
-			const isValid = (style.sheet?.cssRules.length ?? 0) > 0;
-			document.body.removeChild(iframe);
-			return isValid;
-		}
-		document.body.removeChild(iframe);
-		return false;
-	};
+	// Validates CSS if needed (dummy implementation below)
+	function isValidCSS(css: string): boolean {
+		// Replace with your actual validation logic if necessary.
+		return true;
+	}
 
-	// Event handler to validate CSS whenever the user types.
-	const handleInput = (event: Event) => {
+	// Update text on user input.
+	function handleInput(event: Event) {
 		text = (event.target as HTMLTextAreaElement).value;
 		if (isValidCSS(text)) {
 			onCssChange(text);
 		} else {
 			console.error("Invalid CSS");
 		}
-	};
+	}
 
-	// Function to reset CSS to the initial state
-	const resetCss = () => {
-		text = initialCss;
-		onCssChange(text);
-	};
-
-	// Event handler to allow tab characters in the textarea
-	const handleKeyDown = (event: KeyboardEvent) => {
+	// Allow tab insertion inside the textarea.
+	function handleKeyDown(event: KeyboardEvent) {
+		const textarea = event.target as HTMLTextAreaElement;
 		if (event.key === 'Tab') {
 			event.preventDefault();
-			const textarea = event.target as HTMLTextAreaElement;
+			event.stopPropagation();
 			const start = textarea.selectionStart;
 			const end = textarea.selectionEnd;
-
-			// Insert tab character at the cursor position
 			text = text.substring(0, start) + '\t' + text.substring(end);
-
-			// Update the textarea value
 			textarea.value = text;
-
-			// Move caret to the correct position after the tab
 			textarea.selectionStart = textarea.selectionEnd = start + 1;
+		} else if (event.key === 'ArrowDown') {
+			// If the caret is at the very end of the text, insert a new line.
+			if (textarea.selectionStart === text.length) {
+				event.preventDefault();
+				const start = textarea.selectionStart;
+				text = text.substring(0, start) + '\n' + text.substring(textarea.selectionEnd);
+				textarea.value = text;
+				// Update caret to immediately after the inserted newline
+				textarea.selectionStart = textarea.selectionEnd = start + 1;
+				// Notify parent via onCssChange callback
+				onCssChange(text);
+			}
 		}
-	};
+	}
 
-	// Highlight the CSS code using Prism.js
-	$: highlightedCss = Prism.highlight(text, Prism.languages.css, 'css');
+	// Synchronize scrolling between the textarea and highlighted pre element.
+	let editorEl: HTMLTextAreaElement;
+	let preEl: HTMLElement;
+	function syncScroll() {
+		if (editorEl && preEl) {
+			preEl.scrollTop = editorEl.scrollTop;
+			preEl.scrollLeft = editorEl.scrollLeft;
+		}
+	}
 </script>
 
-<!-- Updated textbox for real-time CSS input -->
-<textarea
-	placeholder="Type your CSS here..."
-	on:input={handleInput}
-	on:keydown={handleKeyDown}
-	bind:value={text}
-	rows="10"
-	cols="50"
->
-</textarea>
+<div class="editor-container">
+	<!-- Highlighted code layer -->
+	<pre class="highlighted-code" bind:this={preEl}><code>{@html highlightedCss}</code></pre>
+	<!-- Transparent textarea layer -->
+	<textarea
+		class="editor"
+		placeholder="Type your CSS here..."
+		on:input={handleInput}
+		on:keydown={handleKeyDown}
+		bind:value={text}
+		on:scroll={syncScroll}
+		rows="10"
+		cols="50"
+		bind:this={editorEl}
+	></textarea>
+</div>
 
-<!-- Reset button -->
-<button on:click={resetCss}>Reset CSS</button>
-
-<!-- Display highlighted CSS code -->
-<pre class="language-css"><code>{@html highlightedCss}</code></pre>
-
-<!-- Preview window using the html prop -->
+<!-- Reset and preview -->
+<button on:click={() => { text = initialCss; onCssChange(text); }}>Reset CSS</button>
 <h2>Example Window</h2>
-<iframe srcdoc={`<html><head><style>${text}</style></head><body>${html}</body></html>`} width="100%" height="200px" sandbox="allow-scripts" />
+<iframe srcdoc={srcDoc} width="100%" height="200px" sandbox="allow-scripts"></iframe>
 
 <style scoped>
-	textarea {
-		tab-size: 2; /* Adjust the tab size to 2 spaces */
-		width: 100%; 
+	.editor-container {
+		position: relative;
+		width: 100%;
+		min-height: 150px; /* Adjust as needed */
+		border: 1px solid #ccc; /* Move the border here */
+		box-sizing: border-box;
 	}
-	pre {
-		background: #f5f5f5; /* Adjust based on your theme */
-		padding: 10px;
-		border-radius: 5px;
-		overflow-x: auto;
+	
+	/* Ensure both layers share the same styling */
+	.editor-container pre,
+	.editor-container textarea {
+		margin: 0;
+		padding: 0.5em;
+		font-family: monospace;
+		font-size: 1em;
+		line-height: 1.5em;
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		box-sizing: border-box;
+		-moz-tab-size: 2;
+		tab-size: 2;
+		width: 100%;
+	}
+	
+	/* Highlighted code layer styling */
+	.highlighted-code {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		pointer-events: none; /* so clicks pass through to the textarea */
+		background: #f5f5f5; /* Adjust to match your theme */
+		overflow: auto;
+	}
+	
+	/* Transparent textarea on top */
+	.editor {
+		position: relative;
+		background: transparent;
+		color: transparent; /* hide raw text so only highlighted code shows */
+		caret-color: black; /* ensure the caret remains visible */
+		resize: none;
+		overflow: auto;
+		z-index: 1;
+		border: none;
 	}
 </style> 

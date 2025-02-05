@@ -32,10 +32,8 @@
 .box-c { background-color: blue; width: 100px; height: 100px; }`;
 
 	// HTML content for the three boxes
-	const htmlContent = `
-		<div class="box-a">Box A</div>
-		<div class="box-b">Box B</div>
-		<div class="box-c">Box C</div>
+	const htmlContent = `<div class="box-a">Box A</div><div class="box-b">Box B</div>
+<div class="box-c">Box C</div>
 	`;
 </script>
 
