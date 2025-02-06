@@ -3,12 +3,12 @@
 	"rules": {
 		"users": {
 			"$uid": {
-				".read": "auth != null && auth.uid === $uid",
+				".read": "auth != null && auth.token.firebase.sign_in_provider !== 'anonymous'",
 				".write": "auth != null && auth.uid === $uid"
 			}
 		},
 		// Deny access to everything else by default.
-		".read": false,
+		".read": "auth != null && auth.token.firebase.sign_in_provider !== 'anonymous'",
 		".write": false
 	}
 }

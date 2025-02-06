@@ -14,14 +14,16 @@
 		}
 	};
 
-	// Function to save CSS to realtime DB whenever the user types.
-	const handleCssChange = async (css: string) => {
+	// Function to save CSS and HTML to realtime DB whenever the user types.
+	// Updated to accept both 'css' and 'html' and save them to the user node.
+	const handleCssChange = async ({css, html}: {css: string, html: string}) => {
 		try {
 			if (auth.currentUser) {
-				await set(ref(realtimeDb, `users/${auth.currentUser.uid}/text`), css);
+				// Save both the CSS and HTML in the user's record
+				await set(ref(realtimeDb, `users/${auth.currentUser.uid}`), { css, html });
 			}
 		} catch (error) {
-			console.error("Error saving text:", error);
+			console.error("Error saving css and html:", error);
 		}
 	};
 
@@ -40,7 +42,7 @@
 <h1>Landing Page</h1>
 <p>You are now signed in anonymously. Welcome!</p>
 
-<!-- Use the CssEditor component with a callback prop and HTML content -->
+<!-- Use the CssEditor component with the callback prop and HTML content -->
 <CssEditor initialCss={initialCss} html={htmlContent} onCssChange={handleCssChange} />
 
 <!-- Logout button -->

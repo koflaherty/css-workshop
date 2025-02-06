@@ -3,7 +3,7 @@
 	import 'prismjs/themes/prism.css'; // Choose your preferred theme
 
 	export let initialCss: string = '';
-	export let onCssChange: (css: string) => void = () => {};
+	export let onCssChange: (data: { css: string, html: string }) => void = () => {};
 	export let html: string = '';
 
 	// The text content of the editor
@@ -25,7 +25,7 @@
 	function handleInput(event: Event) {
 		text = (event.target as HTMLTextAreaElement).value;
 		if (isValidCSS(text)) {
-			onCssChange(text);
+			onCssChange({ css: text, html });
 		} else {
 			console.error("Invalid CSS");
 		}
@@ -52,7 +52,7 @@
 				// Update caret to immediately after the inserted newline
 				textarea.selectionStart = textarea.selectionEnd = start + 1;
 				// Notify parent via onCssChange callback
-				onCssChange(text);
+				onCssChange({ css: text, html });
 			}
 		}
 	}
@@ -86,7 +86,7 @@
 </div>
 
 <!-- Reset and preview -->
-<button on:click={() => { text = initialCss; onCssChange(text); }}>Reset CSS</button>
+<button on:click={() => { text = initialCss; onCssChange({ css: text, html }); }}>Reset CSS</button>
 <h2>Example Window</h2>
 <iframe srcdoc={srcDoc} width="100%" height="200px" sandbox="allow-scripts"></iframe>
 
