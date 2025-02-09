@@ -8,12 +8,17 @@
 
 	/**
 	 * handleCssChange
-	 * Saves the updated CSS/HTML to Firebase.
+	 * Saves the updated CSS/HTML and user's name to Firebase.
 	 */
 	async function handleCssChange({ css, html }: { css: string; html: string }) {
 		try {
 			if (auth.currentUser) {
-				await set(ref(realtimeDb, `users/${auth.currentUser.uid}`), { css, html });
+				const displayName = auth.currentUser.displayName || 'Anonymous';
+				await set(ref(realtimeDb, `users/${auth.currentUser.uid}`), { 
+					css, 
+					html,
+					name: displayName 
+				});
 			}
 		} catch (error) {
 			console.error('Error saving css and html:', error);

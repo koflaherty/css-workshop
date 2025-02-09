@@ -7,7 +7,7 @@
 
 	let currentUser: any = null; // Holds the authenticated user
 	let loading = true; // To display a loading state
-	let examples: { uid: string, css: string, html: string }[] = []; // List of saved CSS examples
+	let examples: { uid: string, css: string, html: string, name: string }[] = []; // List of saved CSS examples with user names
 
 	// Pagination variables
 	let currentPage: number = 1;
@@ -48,7 +48,7 @@
 			const data = snapshot.val();
 			if (data) {
 				examples = Object.entries(data).map(([uid, value]: [string, any]) => {
-					return { uid, css: value.css || '', html: value.html || '' };
+					return { uid, css: value.css || '', html: value.html || '', name: value.name || 'Anonymous' };
 				});
 			} else {
 				examples = [];
@@ -93,7 +93,7 @@
 		<div class="grid">
 			{#each paginatedExamples as example (example.uid)}
 				<div class="grid-item">
-					<h3>{example.uid}</h3>
+					<h3>{example.name}</h3>
 					<iframe 
 					  srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
 					  sandbox="allow-scripts"
