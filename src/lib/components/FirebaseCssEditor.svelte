@@ -14,10 +14,10 @@
 		try {
 			if (auth.currentUser) {
 				const displayName = auth.currentUser.displayName || 'Anonymous';
-				await set(ref(realtimeDb, `users/${auth.currentUser.uid}`), { 
-					css, 
+				await set(ref(realtimeDb, `users/${auth.currentUser.uid}`), {
+					css,
 					html,
-					name: displayName 
+					name: displayName,
 				});
 			}
 		} catch (error) {
@@ -26,8 +26,4 @@
 	}
 </script>
 
-<CssEditor
-  initialCss={initialCss}
-  html={htmlContent}
-  onCssChange={handleCssChange}
-/> 
+<CssEditor {initialCss} html={htmlContent} onCssChange={handleCssChange} />

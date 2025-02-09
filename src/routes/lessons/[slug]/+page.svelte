@@ -4,10 +4,8 @@
 
 <!-- Render whichever component was loaded in +page.ts -->
 {#if data.error}
-  <h1>{data.error.message}</h1>
-  <p>
-    This lesson could not be found.
-  </p>
+	<h1>{data.error.message}</h1>
+	<p>This lesson could not be found.</p>
 {:else}
-  <svelte:component this={data.Content} />
-{/if} 
+	<svelte:component this={data.Content} />
+{/if}

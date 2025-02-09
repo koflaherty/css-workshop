@@ -8,9 +8,9 @@
 <p>Pick a lesson from the list below:</p>
 
 <ul>
-{#each data.lessons as lesson}
-	<li>
-		<a href="/lessons/{lesson.slug}">{lesson.title}</a>
-	</li>
-{/each}
-</ul> 
+	{#each data.lessons as lesson}
+		<li>
+			<a href="/lessons/{lesson.slug}">{lesson.title}</a>
+		</li>
+	{/each}
+</ul>

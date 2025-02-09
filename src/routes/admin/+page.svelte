@@ -7,7 +7,7 @@
 
 	let currentUser: any = null; // Holds the authenticated user
 	let loading = true; // To display a loading state
-	let examples: { uid: string, css: string, html: string, name: string }[] = []; // List of saved CSS examples with user names
+	let examples: { uid: string; css: string; html: string; name: string }[] = []; // List of saved CSS examples with user names
 
 	onMount(() => {
 		const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
@@ -30,7 +30,12 @@
 			const data = snapshot.val();
 			if (data) {
 				examples = Object.entries(data).map(([uid, value]: [string, any]) => {
-					return { uid, css: value.css || '', html: value.html || '', name: value.name || 'Anonymous' };
+					return {
+						uid,
+						css: value.css || '',
+						html: value.html || '',
+						name: value.name || 'Anonymous',
+					};
 				});
 			} else {
 				examples = [];
@@ -87,7 +92,7 @@
 		font-weight: bold;
 		margin-bottom: 0.5rem;
 		margin: 0;
-		padding:0 ;
+		padding: 0;
 		box-sizing: border-box;
 		display: inline;
 		background-color: rgba(0, 0, 0, 0.5);
@@ -109,446 +114,485 @@
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}{#each examples as example (example.uid)}
-				<div class="grid-item">
-					<div class="name">{example.name}</div>
-					<iframe 
-						srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
-						sandbox="allow-scripts"
-						width="100%" 
-						height="100%">
-					</iframe>
-				</div>
-			{/each}
-			{#each examples as example (example.uid)}
-				<div class="grid-item">
-					<div class="name">{example.name}</div>
-					<iframe 
-						srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
-						sandbox="allow-scripts"
-						width="100%" 
-						height="100%">
-					</iframe>
-				</div>
-			{/each}
-			{#each examples as example (example.uid)}
-				<div class="grid-item">
-					<div class="name">{example.name}</div>
-					<iframe 
-						srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
-						sandbox="allow-scripts"
-						width="100%" 
-						height="100%">
-					</iframe>
-				</div>
-			{/each}
-			{#each examples as example (example.uid)}
-				<div class="grid-item">
-					<div class="name">{example.name}</div>
-					<iframe 
-						srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
-						sandbox="allow-scripts"
-						width="100%" 
-						height="100%">
-					</iframe>
-				</div>
-			{/each}
-			{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
 				{#each examples as example (example.uid)}
 					<div class="grid-item">
 						<div class="name">{example.name}</div>
-						<iframe 
-							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`} 
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
 							sandbox="allow-scripts"
-							width="100%" 
-							height="100%">
+							width="100%"
+							height="100%"
+						>
 						</iframe>
 					</div>
 				{/each}
-
+				{#each examples as example (example.uid)}
+					<div class="grid-item">
+						<div class="name">{example.name}</div>
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
+							sandbox="allow-scripts"
+							width="100%"
+							height="100%"
+						>
+						</iframe>
+					</div>
+				{/each}
+				{#each examples as example (example.uid)}
+					<div class="grid-item">
+						<div class="name">{example.name}</div>
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
+							sandbox="allow-scripts"
+							width="100%"
+							height="100%"
+						>
+						</iframe>
+					</div>
+				{/each}
+				{#each examples as example (example.uid)}
+					<div class="grid-item">
+						<div class="name">{example.name}</div>
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
+							sandbox="allow-scripts"
+							width="100%"
+							height="100%"
+						>
+						</iframe>
+					</div>
+				{/each}
+				{#each examples as example (example.uid)}
+					<div class="grid-item">
+						<div class="name">{example.name}</div>
+						<iframe
+							srcdoc={`<html><head><style>${example.css}</style></head><body>${example.html}</body></html>`}
+							sandbox="allow-scripts"
+							width="100%"
+							height="100%"
+						>
+						</iframe>
+					</div>
+				{/each}
 			</div>
 		{:else}
 			<p>No examples saved yet.</p>
 		{/if}
 	</div>
-{/if} 
+{/if}

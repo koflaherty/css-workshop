@@ -17,7 +17,7 @@
 			goto('/admin');
 		} catch (error: any) {
 			console.error('Login error:', error);
-			errorMsg = "Login failed: " + error.message;
+			errorMsg = 'Login failed: ' + error.message;
 		}
 	};
 </script>
@@ -41,4 +41,4 @@
 
 {#if errorMsg}
 	<p style="color: red;">{errorMsg}</p>
-{/if} 
+{/if}

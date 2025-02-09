@@ -8,7 +8,8 @@
 
 	// Function to handle anonymous sign-in and navigation to landing page
 	const handleSignIn = async () => {
-		if (!name.trim()) { // Ensure the name is not just whitespace
+		if (!name.trim()) {
+			// Ensure the name is not just whitespace
 			alert('Name is required to sign in.');
 			return;
 		}
@@ -18,7 +19,7 @@
 				// Update the Firebase Auth profile with the user's name
 				await updateProfile(user, { displayName: name });
 			}
-			goto('/landing'); // Navigate to the landing page
+			goto('/lessons');
 		} catch (error) {
 			console.error('Sign in error:', error);
 		}
@@ -26,7 +27,9 @@
 </script>
 
 <h1>Welcome to the CSS Workshop</h1>
-<p>This workshop is interactive and you'll be able to view and edit CSS as we go.</p>
+<p>
+	This workshop is interactive and you'll be able to view and edit CSS as we go.
+</p>
 <h2>Ready to Join?</h2>
 <form on:submit|preventDefault={handleSignIn}>
 	<label for="name">Name</label>

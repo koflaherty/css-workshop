@@ -3,7 +3,10 @@
 	import 'prismjs/themes/prism.css'; // Choose your preferred theme
 
 	export let initialCss: string = '';
-	export let onCssChange: (data: { css: string, html: string }) => void = () => {};
+	export let onCssChange: (data: {
+		css: string;
+		html: string;
+	}) => void = () => {};
 	export let html: string = '';
 
 	// The text content of the editor
@@ -11,7 +14,7 @@
 
 	// Highlighted code computed via PrismJS
 	$: highlightedCss = Prism.highlight(text, Prism.languages.css, 'css');
-	
+
 	// Preview iframe document (optional)
 	$: srcDoc = `<html><head><style>${text}</style></head><body>${html}</body></html>`;
 
@@ -27,7 +30,7 @@
 		if (isValidCSS(text)) {
 			onCssChange({ css: text, html });
 		} else {
-			console.error("Invalid CSS");
+			console.error('Invalid CSS');
 		}
 	}
 
@@ -47,7 +50,10 @@
 			if (textarea.selectionStart === text.length) {
 				event.preventDefault();
 				const start = textarea.selectionStart;
-				text = text.substring(0, start) + '\n' + text.substring(textarea.selectionEnd);
+				text =
+					text.substring(0, start) +
+					'\n' +
+					text.substring(textarea.selectionEnd);
 				textarea.value = text;
 				// Update caret to immediately after the inserted newline
 				textarea.selectionStart = textarea.selectionEnd = start + 1;
@@ -67,30 +73,6 @@
 		}
 	}
 </script>
-
-<div class="split-container">
-	<div class="editor-container">
-		<!-- Highlighted code layer -->
-		<pre class="highlighted-code" bind:this={preEl}><code>{@html highlightedCss}</code></pre>
-		<!-- Transparent textarea layer -->
-		<textarea
-			class="editor"
-			placeholder="Type your CSS here..."
-			on:input={handleInput}
-			on:keydown={handleKeyDown}
-			bind:value={text}
-			on:scroll={syncScroll}
-			rows="10"
-			bind:this={editorEl}
-		></textarea>
-
-		<div class="controls">
-			<button on:click={() => { text = initialCss; onCssChange({ css: text, html }); }}>Reset CSS</button>
-		</div>
-	</div>
-	<iframe class="preview-iframe" srcdoc={srcDoc} sandbox="allow-scripts"></iframe>
-</div>
-
 
 <style scoped>
 	.split-container {
@@ -120,7 +102,7 @@
 		border: 1px solid #ccc; /* Move the border here */
 		box-sizing: border-box;
 	}
-	
+
 	/* Ensure both layers share the same styling */
 	.editor-container pre,
 	.editor-container textarea {
@@ -138,7 +120,7 @@
 		font-family: var(--code-font);
 		border: none;
 	}
-	
+
 	/* Highlighted code layer styling */
 	.highlighted-code {
 		position: absolute;
@@ -150,7 +132,7 @@
 		overflow: auto;
 		background-color: var(--code-background);
 	}
-	
+
 	/* Transparent textarea on top */
 	.editor {
 		position: relative;
@@ -162,4 +144,35 @@
 		z-index: 1;
 		border: none;
 	}
-</style> 
+</style>
+
+<div class="split-container">
+	<div class="editor-container">
+		<!-- Highlighted code layer -->
+		<pre class="highlighted-code" bind:this={preEl}><code
+				>{@html highlightedCss}</code
+			></pre>
+		<!-- Transparent textarea layer -->
+		<textarea
+			class="editor"
+			placeholder="Type your CSS here..."
+			on:input={handleInput}
+			on:keydown={handleKeyDown}
+			bind:value={text}
+			on:scroll={syncScroll}
+			rows="10"
+			bind:this={editorEl}
+		></textarea>
+
+		<div class="controls">
+			<button
+				on:click={() => {
+					text = initialCss;
+					onCssChange({ css: text, html });
+				}}>Reset CSS</button
+			>
+		</div>
+	</div>
+	<iframe class="preview-iframe" srcdoc={srcDoc} sandbox="allow-scripts"
+	></iframe>
+</div>

@@ -7,6 +7,10 @@
 				".write": "auth != null && auth.uid === $uid"
 			}
 		},
+		"activeLesson": {
+			".read": "auth != null",
+			".write": "auth != null && auth.token.firebase.sign_in_provider !== 'anonymous'"
+		},
 		// Deny access to everything else by default.
 		".read": "auth != null && auth.token.firebase.sign_in_provider !== 'anonymous'",
 		".write": false
