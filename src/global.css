@@ -1,0 +1,39 @@
+@import url("https://use.typekit.net/gsf6zcp.css");
+
+:root {
+    --heading-font: "proxima-nova", sans-serif;
+    --body-font: "freight-text-pro", serif;
+    --code-font: "courier-prime", monospace;
+    --background-color: #fff; /* Light gray background */
+    --text-color: #333333; /* Dark text */
+    --code-background: #e8e8e8; /* Light background for code blocks */
+    --code-text-color: #d63384; /* Code text color */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    font-family: var(--body-font);
+}
+
+code {
+    background-color: var(--code-background);
+    color: var(--code-text-color);
+    font-family: var(--code-font);
+}
+
+a {
+    color: #007acc;
+    text-decoration: none;
+} 

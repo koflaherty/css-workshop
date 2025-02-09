@@ -94,6 +94,8 @@
 
 <style scoped>
 	.split-container {
+		margin-top: 1.75rem;
+		margin-bottom: 1.75rem;
 		display: flex;
 	}
 
@@ -124,15 +126,17 @@
 	.editor-container textarea {
 		margin: 0;
 		padding: 0.5em;
-		font-family: monospace;
-		font-size: 1em;
-		line-height: 1.5em;
+		font-family: var(--code-font);
+		font-size: 14px;
+		line-height: 1.2em;
 		white-space: pre-wrap;
 		word-wrap: break-word;
 		box-sizing: border-box;
 		-moz-tab-size: 2;
 		tab-size: 2;
 		width: 100%;
+		font-family: var(--code-font);
+		border: none;
 	}
 	
 	/* Highlighted code layer styling */
@@ -143,8 +147,8 @@
 		right: 0;
 		bottom: 0;
 		pointer-events: none; /* so clicks pass through to the textarea */
-		background: #f5f5f5; /* Adjust to match your theme */
 		overflow: auto;
+		background-color: var(--code-background);
 	}
 	
 	/* Transparent textarea on top */
