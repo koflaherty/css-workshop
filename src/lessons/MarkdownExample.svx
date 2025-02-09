@@ -1,0 +1,26 @@
+<script lang="ts">
+  import FirebaseCssEditor from '$lib/components/FirebaseCssEditor.svelte';
+</script>
+
+# Mastering the CSS Display Property
+
+The `display` property in CSS controls how an element is displayed. Common values include:
+- **block**: takes up the full width, always starting on a new line.
+- **inline**: takes only as much width as needed, does not start on a new line.
+- **inline-block**: similar to inline, but allows width/height to be set.
+- **flex**: creates a flex container for more dynamic layouts.
+- **grid**: creates a grid container for two-dimensional layouts.
+
+## Code Challenge
+1. Change `.highlight` to display: inline-block and give it a width and height.
+2. Observe how it affects the element.
+
+<FirebaseCssEditor
+  initialCss={`.highlight {
+    display: block;
+    background-color: yellow;
+  }`}
+  htmlContent={`
+    <div class="highlight">Try adjusting the display property here!</div>
+  `}
+/> 

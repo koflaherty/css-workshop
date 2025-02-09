@@ -68,29 +68,49 @@
 	}
 </script>
 
-<div class="editor-container">
-	<!-- Highlighted code layer -->
-	<pre class="highlighted-code" bind:this={preEl}><code>{@html highlightedCss}</code></pre>
-	<!-- Transparent textarea layer -->
-	<textarea
-		class="editor"
-		placeholder="Type your CSS here..."
-		on:input={handleInput}
-		on:keydown={handleKeyDown}
-		bind:value={text}
-		on:scroll={syncScroll}
-		rows="10"
-		cols="50"
-		bind:this={editorEl}
-	></textarea>
+<div class="split-container">
+	<div class="editor-container">
+		<!-- Highlighted code layer -->
+		<pre class="highlighted-code" bind:this={preEl}><code>{@html highlightedCss}</code></pre>
+		<!-- Transparent textarea layer -->
+		<textarea
+			class="editor"
+			placeholder="Type your CSS here..."
+			on:input={handleInput}
+			on:keydown={handleKeyDown}
+			bind:value={text}
+			on:scroll={syncScroll}
+			rows="10"
+			bind:this={editorEl}
+		></textarea>
+
+		<div class="controls">
+			<button on:click={() => { text = initialCss; onCssChange({ css: text, html }); }}>Reset CSS</button>
+		</div>
+	</div>
+	<iframe class="preview-iframe" srcdoc={srcDoc} sandbox="allow-scripts"></iframe>
 </div>
 
-<!-- Reset and preview -->
-<button on:click={() => { text = initialCss; onCssChange({ css: text, html }); }}>Reset CSS</button>
-<h2>Example Window</h2>
-<iframe srcdoc={srcDoc} width="100%" height="200px" sandbox="allow-scripts"></iframe>
 
 <style scoped>
+	.split-container {
+		display: flex;
+	}
+
+	.controls {
+		position: absolute;
+		top: 4px;
+		right: 4px;
+		z-index: 1;
+	}
+
+	.preview-iframe {
+		display: block;
+		border: 1px solid #ccc;
+		width: 100%;
+		margin: 0 auto;
+	}
+
 	.editor-container {
 		position: relative;
 		width: 100%;
