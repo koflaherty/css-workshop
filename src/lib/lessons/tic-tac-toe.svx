@@ -74,6 +74,17 @@ Hint: You can use the `:contains()` selector to find elements containing specifi
   initialCss={`${baseCSS}
 .active {
   color: green;
+  position: relative;
+}
+.active::after {
+  content: '';
+  width: 2px;
+  height: 100%;
+  background-color: green;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transform: rotate(45deg);
 }
 `}
   htmlContent={gameBoardHTML}

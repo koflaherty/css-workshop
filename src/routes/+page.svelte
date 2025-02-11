@@ -1,12 +1,25 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { signPlayerIn, realtimeDb } from '$lib/firebase';
-	import { getAuth, onAuthStateChanged, updateProfile } from 'firebase/auth';
-	import { ref, set } from 'firebase/database';
+	import { signPlayerIn, auth } from '$lib/firebase';
+	import { onAuthStateChanged, updateProfile } from 'firebase/auth';
+	import { onMount } from 'svelte';
 
 	let name: string = '';
 
-	// Function to handle anonymous sign-in and navigation to landing page
+	// Check on mount if user is already logged in.
+	onMount(() => {
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			if (user) {
+				goto('/lessons');
+			}
+		});
+
+		return () => {
+			unsubscribe();
+		};
+	});
+
+	// Function to handle anonymous sign-in and navigation to lessons page
 	const handleSignIn = async () => {
 		if (!name.trim()) {
 			// Ensure the name is not just whitespace
@@ -19,7 +32,6 @@
 				// Update the Firebase Auth profile with the user's name
 				await updateProfile(user, { displayName: name });
 			}
-			goto('/lessons');
 		} catch (error) {
 			console.error('Sign in error:', error);
 		}
