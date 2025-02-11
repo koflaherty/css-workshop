@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Prism from 'prismjs';
 	import 'prismjs/themes/prism.css'; // Choose your preferred theme
+	import { onMount } from 'svelte';
 
 	export let initialCss: string = '';
 	export let onCssChange: (data: {
@@ -8,6 +9,7 @@
 		html: string;
 	}) => void = () => {};
 	export let html: string = '';
+	export let rows: number = 10;
 
 	// The text content of the editor
 	let text: string = initialCss;
@@ -95,6 +97,10 @@
 		margin: 0 auto;
 	}
 
+	.editor {
+		height: 100%;
+	}
+
 	.editor-container {
 		position: relative;
 		width: 100%;
@@ -160,7 +166,7 @@
 			on:keydown={handleKeyDown}
 			bind:value={text}
 			on:scroll={syncScroll}
-			rows="10"
+			{rows}
 			bind:this={editorEl}
 		></textarea>
 

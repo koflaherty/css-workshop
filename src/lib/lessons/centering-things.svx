@@ -9,15 +9,19 @@ const centerCSS = `/* class used to show the rectangle */
   border: 1px solid black;
 }
 
+.contents {
+  color: red;
+}
+
 div {
   text-align: center;
 }
 `;
 
 const centerCSSHTML = `
-<div class="container">Center me!</div>
+<div class="container">Center me 1!</div>
 <div class="container">
-  <div class="contents">Center me!</div>
+  <div class="contents">Center me 2!</div>
 </div>
 `;
 </script>
@@ -26,21 +30,169 @@ const centerCSSHTML = `
 
 Centering things in CSS can be a bit tricky and there are many ways to center elements and many of the solutions have a scenario where there useful. To start let's show you a couple examples.
 
-## Centering Text
-<pre>
-  {centerCSSHTML}
+
+
+
+## Horizontal Centering
+
+### Centering Text
+
+<FirebaseCssEditor
+  initialCss={`
+div {
+  text-align: center;
+} 
+`}
+  htmlContent={`<div>Centered Text</div>`}
+  rows={5}
+/> 
+
+### Centering a Box
+<FirebaseCssEditor
+  initialCss={`/* Class to show the box */
+.box {
+  width: 75px;
+  height: 75px;
+  border: 1px solid black;
+}
+/* Centers the box */
+div {
+  margin: 0 auto;
+} 
+`}
+  htmlContent={`<div class="box" />`}
+  rows={10}
+/>
+
+## Vertical Centering
+
+### Centering Text With Line Height
+
+<FirebaseCssEditor
+  initialCss={`/* Draws the box */
+.box {
+  height: 100px;
+  border: 1px solid black;
+}
+/* Centers the text */
+.text {
+  line-height: 100px;
+} 
+`}
+  htmlContent={`<div class="box"><div class="text">Centered Text</div></div>`}
+  rows={10}
+/> 
+
+### Centering Text With Positions
+
+<FirebaseCssEditor
+  initialCss={`/* Draws the box */
+.box {
+  position: relative; /* <- this is important */
+  height: 100px;
+  border: 1px solid black;
+}
+/* Centers the text */
+.text {
+  position: absolute;
+  top: calc(50px - 0.5em);
+} 
+`}
+  htmlContent={`<div class="box"><div class="text">Centered Text</div></div>`}
+  rows={11}
+/>
+
+# Code Challenge
+
+There's two boxes below each a bit different. One has text directly inside a div where the other has an extra container. Try centering the text both vertically and horizontally inside each box.
+
+Certain solutions will only work with one of the boxes. If you are getting stuck, it's okay to focus on one of the scenarios.
+
+<div>
+<b>HTML</b>
+<pre style="margin-top: 0;">
+{centerCSSHTML}
 </pre>
+</div>
 
 <FirebaseCssEditor
   initialCss={centerCSS}
   htmlContent={centerCSSHTML}
-  rows={15}
-/> 
+  rows={20}
+/>
 
-<Toolbox title="Toolbox">
+# Stuck?
 
-- **Color Names:** `red`, `blue`, `green`, `yellow`, `purple`, `orange`, `pink`, `brown`, `black`, `white`
-- **Hexadecimal:** `#000000`, `#ffffff`, `#ff0000`, `#00ff00`
-- **RGB:** `rgb(0, 0, 0)`, `rgb(255, 255, 255)`, `rgb(255, 0, 0)`
+Only check it out if you're **giving up on the code challenge**.
+
+<Toolbox title="My Favorite Centering Pattern #1">
+
+# Flexbox
+
+A lot's changed since the days of Internet Explorer one of those being wide support for flexbox.
+
+<FirebaseCssEditor
+  initialCss={`
+.container {
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+}
+/* Flexbox Solution */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+`}
+  htmlContent={centerCSSHTML}
+  rows={16}
+/>
+
+<FirebaseCssEditor
+  initialCss={`
+.container {
+  width: 100%;
+}
+/* Flexbox Solution */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+`}
+  htmlContent={`<div class="container"><h1>Heading Text</h1><div class="contents">Menu</div></div>`}
+  rows={10}
+/>
+
+</Toolbox>
+
+<Toolbox title="My Favorite Centering Pattern #2">
+
+# Using Transformations
+
+This only works when text is inside it's own element.
+<FirebaseCssEditor
+  initialCss={`
+.container {
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+}
+/* Flexbox Solution */
+.container {
+  position: relative; 
+}
+.contents {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+`}
+  htmlContent={centerCSSHTML}
+  rows={20}
+/>
 
 </Toolbox>

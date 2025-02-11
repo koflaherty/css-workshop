@@ -79,7 +79,7 @@
 	}
 
 	.lesson-button.active {
-		background-color: #4CAF50;
+		background-color: #4caf50;
 		color: white;
 		border-color: #45a049;
 	}
@@ -104,7 +104,7 @@
 					{lesson.title}
 				</button>
 			{/each}
-			<button 
+			<button
 				class="lesson-button"
 				class:active={activeLesson === null}
 				on:click={() => setActiveLesson(null)}

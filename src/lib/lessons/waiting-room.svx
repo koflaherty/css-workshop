@@ -29,6 +29,7 @@ div {
   htmlContent={`
     <div class="color-pallet" />
   `}
+  rows={10}
 /> 
 
 <Toolbox title="Toolbox">

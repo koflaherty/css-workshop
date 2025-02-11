@@ -20,18 +20,22 @@
 
 			// Active lesson listener
 			const activeLessonRef = ref(realtimeDb, 'activeLesson');
-			const unsubscribeLesson = onValue(activeLessonRef, (snapshot) => {
-				const activeLesson = snapshot.val();
-				if (activeLesson) {
-					// Only navigate if we're not already on the active lesson page
-					if (!$page.url.pathname.includes(`/lessons/${activeLesson}`)) {
-						goto(`/lessons/${activeLesson}`);
+			const unsubscribeLesson = onValue(
+				activeLessonRef,
+				(snapshot) => {
+					const activeLesson = snapshot.val();
+					if (activeLesson) {
+						// Only navigate if we're not already on the active lesson page
+						if (!$page.url.pathname.includes(`/lessons/${activeLesson}`)) {
+							goto(`/lessons/${activeLesson}`);
+						}
 					}
+					loaded = true;
+				},
+				() => {
+					loaded = true;
 				}
-        loaded = true;
-			}, () => {
-        loaded = true;
-      });
+			);
 
 			return () => {
 				unsubscribeAuth();

@@ -5,7 +5,7 @@
 
 	export let initialCss: string;
 	export let htmlContent: string;
-	export let rows: number = 11;
+	export let rows: number = 10;
 
 	/**
 	 * handleCssChange
@@ -27,9 +27,9 @@
 	}
 </script>
 
-<CssEditor 
-	{initialCss} 
-	html={htmlContent} 
+<CssEditor
+	{initialCss}
+	html={htmlContent}
 	onCssChange={handleCssChange}
 	{rows}
 />
