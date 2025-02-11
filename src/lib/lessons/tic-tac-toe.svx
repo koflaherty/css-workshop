@@ -1,0 +1,81 @@
+<script lang="ts">
+  import FirebaseCssEditor from '$lib/components/FirebaseCssEditor.svelte';
+  import Toolbox from '$lib/components/Toolbox.svelte';
+
+const baseCSS = `
+.board {
+  width: 150px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+.square {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+.square:not(:last-child) {
+  border-right: 1px solid black;
+}
+
+.row + .row {
+  border-bottom: 1px solid black;
+}
+`;
+
+
+// Example HTML for a "tic-tac-toe"-like grid
+const gameBoardHTML = `
+<div class="board">
+  <div class="row">
+    <div class="square active">X</div>
+    <div class="square">O</div>
+    <div class="square">O</div>
+  </div>
+  <div class="row">
+    <div class="square">O</div>
+    <div class="square active">X</div>
+    <div class="square">O</div>
+  </div>
+  <div class="row">
+    <div class="square">O</div>
+    <div class="square">O</div>
+    <div class="square active">X</div>
+  </div>
+</div>
+`;
+</script>
+
+# Tic Tac Toe
+
+In this lesson, we'll explore how to use CSS selectors to create special effects or target specific elements based on their order in the DOM. For example:
+
+- **`:first-child`** targets the very first element of its parent.  
+- **`:last-child`** targets the very last element of its parent.  
+- **`:nth-of-type()`** can style any pattern of elements, like only even or only odd elements.  
+
+Below, you'll see a tic-tac-toe board that's styled but has a few issues. Can you finish it so the tic tac toe board looks like a #? __Hint: It's a one line change__.
+
+<FirebaseCssEditor
+  initialCss={baseCSS}
+  htmlContent={gameBoardHTML}
+  rows={24}
+/>
+
+## Challenge 2: Connect the X's!
+
+Now let's try something more advanced! The X's in this tic-tac-toe board form a diagonal line. Can you add a line that connects them? 
+
+Hint: You can use the `:contains()` selector to find elements containing specific text, and then use `::after` or `::before` pseudo-elements to draw lines.
+
+<FirebaseCssEditor
+  initialCss={`${baseCSS}
+.active {
+  color: green;
+}
+`}
+  htmlContent={gameBoardHTML}
+  rows={24}
+/>

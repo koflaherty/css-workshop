@@ -1,5 +1,7 @@
 export const lessons = [
 	{ slug: 'waiting-room', title: 'CSS Workshop' },
-	{ slug: '01-display', title: 'Mastering the CSS Display Property' },
 	{ slug: 'centering-things', title: 'Centering Things' },
+	{ slug: 'tic-tac-toe', title: 'Tic Tac Toe' },
+	{ slug: 'button-interactions', title: 'Button Interactions' },
+	{ slug: 'lists-of-things', title: 'Lists of Things' },
 ];

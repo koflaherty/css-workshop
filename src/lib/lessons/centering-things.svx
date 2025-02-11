@@ -173,8 +173,7 @@ A lot's changed since the days of Internet Explorer one of those being wide supp
 
 This only works when text is inside it's own element.
 <FirebaseCssEditor
-  initialCss={`
-.container {
+  initialCss={`.container {
   width: 150px;
   height: 150px;
   border: 1px solid black;

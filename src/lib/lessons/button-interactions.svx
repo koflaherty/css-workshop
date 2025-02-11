@@ -1,0 +1,13 @@
+<script lang="ts">
+  import FirebaseCssEditor from '$lib/components/FirebaseCssEditor.svelte';
+  import Toolbox from '$lib/components/Toolbox.svelte';
+</script>
+
+# Button Interactions
+
+In this lesson, we'll explore how to use CSS to create interactive elements that change when a user hovers over them. For example:
+
+- **`:hover`** can style an element when the user hovers over it.  
+- **`:active`** can style an element when it's being clicked or tapped.  
+- **`:focus`** can style an element when it's being focused on.  
+

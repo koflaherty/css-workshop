@@ -1,0 +1,8 @@
+<script lang="ts">
+  import FirebaseCssEditor from '$lib/components/FirebaseCssEditor.svelte';
+  import Toolbox from '$lib/components/Toolbox.svelte';
+</script>
+
+# Lists of Things
+
+In this lesson, we'll explore how to style `<ul>` and `<ol>` lists and override their default browser styling.
