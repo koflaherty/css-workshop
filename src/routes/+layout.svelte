@@ -4,8 +4,8 @@
 
 <style scoped>
 	.page-layout {
-		padding: 4rem 1rem;
-		max-width: 720px;
+		padding: 1rem;
+		max-width: 760px;
 		margin: 0 auto;
 	}
 </style>

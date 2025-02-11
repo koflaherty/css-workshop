@@ -4,7 +4,7 @@ export const load: PageLoad = async ({ params }) => {
 	// Attempt to dynamically import the lesson content based on the slug
 	try {
 		const lessonImport = await import(
-			`../../../lib/lessons/${params.slug}/Content.svx`
+			`../../../lib/lessons/${params.slug}.svx`
 		);
 		return {
 			Content: lessonImport.default,

@@ -1,0 +1,40 @@
+<script lang="ts">
+  import FirebaseCssEditor from '$lib/components/FirebaseCssEditor.svelte';
+  import Toolbox from '$lib/components/Toolbox.svelte';
+  let selectedColor = "#48eb8e";
+</script>
+
+# Welcome to the CSS Workshop
+
+We'll be starting the css workshop soon. For now, please get familar with the CSS editor by letting us know what you're faviorite color is.
+
+<div class="color-picker" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+  <label for="color-picker" style="margin-bottom: 0.25rem;">Need a color?</label>
+  <input name="color-picker" type="color" bind:value={selectedColor} style="width: 100px; height: 100px;" />
+  <div style="margin-top: 0.5rem;">Picker color is <code>{selectedColor}</code>.</div>
+  <div>Try placing it in the CSS Editor below.</div>
+</div>
+
+## CSS Editor
+<FirebaseCssEditor
+  initialCss={`/* applies to all div elements */
+div {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  
+  /* Feel free to get fancy and add additional styles to the div */
+}
+  `}
+  htmlContent={`
+    <div class="color-pallet" />
+  `}
+/> 
+
+<Toolbox title="Toolbox">
+
+- **Color Names:** `red`, `blue`, `green`, `yellow`, `purple`, `orange`, `pink`, `brown`, `black`, `white`
+- **Hexadecimal:** `#000000`, `#ffffff`, `#ff0000`, `#00ff00`
+- **RGB:** `rgb(0, 0, 0)`, `rgb(255, 255, 255)`, `rgb(255, 0, 0)`
+
+</Toolbox>

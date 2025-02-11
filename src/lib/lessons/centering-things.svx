@@ -1,0 +1,46 @@
+<script lang="ts">
+  import FirebaseCssEditor from '$lib/components/FirebaseCssEditor.svelte';
+  import Toolbox from '$lib/components/Toolbox.svelte';
+
+const centerCSS = `/* class used to show the rectangle */
+.container {
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+}
+
+div {
+  text-align: center;
+}
+`;
+
+const centerCSSHTML = `
+<div class="container">Center me!</div>
+<div class="container">
+  <div class="contents">Center me!</div>
+</div>
+`;
+</script>
+
+# Centering Things
+
+Centering things in CSS can be a bit tricky and there are many ways to center elements and many of the solutions have a scenario where there useful. To start let's show you a couple examples.
+
+## Centering Text
+<pre>
+  {centerCSSHTML}
+</pre>
+
+<FirebaseCssEditor
+  initialCss={centerCSS}
+  htmlContent={centerCSSHTML}
+  rows={15}
+/> 
+
+<Toolbox title="Toolbox">
+
+- **Color Names:** `red`, `blue`, `green`, `yellow`, `purple`, `orange`, `pink`, `brown`, `black`, `white`
+- **Hexadecimal:** `#000000`, `#ffffff`, `#ff0000`, `#00ff00`
+- **RGB:** `rgb(0, 0, 0)`, `rgb(255, 255, 255)`, `rgb(255, 0, 0)`
+
+</Toolbox>
