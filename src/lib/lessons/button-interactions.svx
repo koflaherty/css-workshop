@@ -1,13 +1,76 @@
 <script lang="ts">
   import FirebaseCssEditor from '$lib/components/FirebaseCssEditor.svelte';
   import Toolbox from '$lib/components/Toolbox.svelte';
+  const exampleButtonHTML = `<button>Click Me</button>`
 </script>
 
 # Button Interactions
 
-In this lesson, we'll explore how to use CSS to create interactive elements that change when a user hovers over them. For example:
+Let's get creative while doing some interaction design!
 
-- **`:hover`** can style an element when the user hovers over it.  
-- **`:active`** can style an element when it's being clicked or tapped.  
-- **`:focus`** can style an element when it's being focused on.  
+In CSS we can use pseudo-classes like `:hover` and `:active` to style elements based on their state. Check out the following example and make an interactive button you're proud of.
 
+
+<FirebaseCssEditor
+  initialCss={`/* selector for button element */
+button {
+  color: black;
+}
+button:hover {
+  color: orange;
+}
+button:active {
+  color: skyblue;
+}`}
+  htmlContent={exampleButtonHTML}
+  rows={24}
+/>
+
+Feel free to get some inspiration from the following examples.
+
+<Toolbox title="A Small Round Button (Material Design)">
+<FirebaseCssEditor
+  initialCss={`button {
+  height:40px;
+  border-radius: 20px;
+  padding: 0 16px;
+  background-color: #675496;
+  border-width: 0;
+  color: white;
+  transition: all 0.2s ease-in-out;
+}
+button:hover {
+  background-color: #453273;
+}
+button:active {
+  background-color: #23113F;
+}
+`}
+  htmlContent={exampleButtonHTML}
+  rows={18}
+/>
+
+</Toolbox>
+
+<Toolbox title="A Funky Button">
+
+<FirebaseCssEditor
+  initialCss={`button {
+  height: 140px;
+  width: 100%;
+  color: white;
+  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+  border-width: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+button:hover, button:active {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+`}
+  htmlContent={exampleButtonHTML}
+  rows={18}
+/>
+
+</Toolbox>

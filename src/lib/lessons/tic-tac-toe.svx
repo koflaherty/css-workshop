@@ -68,8 +68,6 @@ Below, you'll see a tic-tac-toe board that's styled but has a few issues. Can yo
 
 Now let's try something more advanced! The X's in this tic-tac-toe board form a diagonal line. Can you add a line that connects them? 
 
-Hint: You can use the `:contains()` selector to find elements containing specific text, and then use `::after` or `::before` pseudo-elements to draw lines.
-
 <FirebaseCssEditor
   initialCss={`${baseCSS}
 .active {
