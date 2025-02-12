@@ -64,9 +64,9 @@ Below, you'll see a tic-tac-toe board that's styled but has a few issues. Can yo
   rows={24}
 />
 
-## Challenge 2: Connect the X's!
+## Code Challenge
 
-Now let's try something more advanced! The X's in this tic-tac-toe board form a diagonal line. Can you add a line that connects them? 
+Add a green line that marks the winning combination of the tic-tac-toe board. A few line's been added to help you get started.
 
 <FirebaseCssEditor
   initialCss={`${baseCSS}
@@ -85,6 +85,60 @@ Now let's try something more advanced! The X's in this tic-tac-toe board form a 
   transform: rotate(45deg);
 }
 `}
-  htmlContent={gameBoardHTML}
+  htmlContent={`<div class="board">
+  <div class="row">
+    <div class="square active">X</div>
+    <div class="square active">X</div>
+    <div class="square active">X</div>
+  </div>
+  <div class="row">
+    <div class="square">O</div>
+    <div class="square">O</div>
+    <div class="square">O</div>
+  </div>
+  <div class="row">
+    <div class="square">O</div>
+    <div class="square">O</div>
+    <div class="square">O</div>
+  </div>
+</div>
+<br />
+<br />
+<div class="board">
+  <div class="row">
+    <div class="square">O</div>
+    <div class="square active">X</div>
+    <div class="square">O</div>
+  </div>
+  <div class="row">
+    <div class="square">O</div>
+    <div class="square active">X</div>
+    <div class="square">O</div>
+  </div>
+  <div class="row">
+    <div class="square">O</div>
+    <div class="square active">X</div>
+    <div class="square">O</div>
+  </div>
+</div>
+<br />
+<br />
+<div class="board">
+  <div class="row">
+    <div class="square active">X</div>
+    <div class="square">O</div>
+    <div class="square">O</div>
+  </div>
+  <div class="row">
+    <div class="square">O</div>
+    <div class="square active">X</div>
+    <div class="square">O</div>
+  </div>
+  <div class="row">
+    <div class="square">O</div>
+    <div class="square">O</div>
+    <div class="square active">X</div>
+  </div>
+</div>`}
   rows={24}
 />

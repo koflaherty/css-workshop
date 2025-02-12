@@ -2,6 +2,11 @@
   import FirebaseCssEditor from '$lib/components/FirebaseCssEditor.svelte';
   import Toolbox from '$lib/components/Toolbox.svelte';
   const exampleButtonHTML = `<button>Click Me</button>`
+  const focusListHTML = `<ul>
+  <li tabindex="0">List Item</li>
+  <li tabindex="0">List Item</li>
+  <li tabindex="0">List Item</li>
+</ul>`
 </script>
 
 # Button Interactions
@@ -72,5 +77,73 @@ button:hover, button:active {
   htmlContent={exampleButtonHTML}
   rows={18}
 />
+
+</Toolbox>
+
+<Toolbox title="A Blurry Button Using Blend Modes">
+<FirebaseCssEditor
+  initialCss={`button {
+  width: 100%;
+  padding: 16px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  mix-blend-mode: screen;
+  transition: all 0.3s ease-in-out;
+}
+body {
+  background-image: url('https://images.pexels.com/photos/957024/forest-trees-perspective-bright-957024.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+`}
+  htmlContent={exampleButtonHTML}
+  rows={18}
+/>
+</Toolbox>
+
+# Focus States
+
+Focus states appear on elements when they're navigated to on devices like keyboards or after they've been interacted with. It's important to consider focus states when developing interactive components. If you navigate around this page with the keyboard usign **Tab** and **Shift Tab** to go backwards you'll notice a outline around elements. This your browswer's default focus focus styling.
+
+Just because your browser has a default focus state doesn't mean you have to use it. You can override the default focus state by using the `:focus` pseudo-class. In fact, many design systems have developed their own guidelines for focus states.
+
+Let's try to implement one by [Material Design](https://m2.material.io/design/interaction/states.html#focus).
+
+<video style="display: block;width: 50%;margin:0 auto;" _ngcontent-wkv-c43="" tabindex="0" preload="metadata" role="video" autoplay="" playsinline="" loop="" muted="true">
+  <source _ngcontent-wkv-c43="" src="https://kstatic.googleusercontent.com/files/e3783051a7fd9fc9f70085c303e9175c9683d94fff32f83ae9486f556fc80f381242b211dff8a855d747d935bbab91d269a6afbc31150c130b179bf06c52272e">
+</video>
+
+<b>HTML</b>
+<pre style="margin-top: 0;">
+{focusListHTML}
+</pre>
+
+<FirebaseCssEditor
+  initialCss={`ul {
+  list-style: none;
+  padding: 8px 0; /* Vertical then Horizontal Padding */
+}
+li {
+  padding: 10px 5px;
+  background-color: #f0f0f0;
+}
+`}
+htmlContent={focusListHTML}
+rows={18}
+/>
+
+<Toolbox title="What's the deal with tabindex?">
+
+Tabindex can be applied to any element and is a way to tell browsers that the element should be focusable. **It's the trick to making accessible buttons with lists.**
+</Toolbox>
+
+<Toolbox title="How can I remove the default focus styling?">
+
+To remove deafult focus styling set outline to `none`.
 
 </Toolbox>
