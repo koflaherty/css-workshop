@@ -62,6 +62,9 @@
 				// Notify parent via onCssChange callback
 				onCssChange({ css: text, html });
 			}
+		} else if (event.key === 'Escape') {
+			// Unfocus the textarea
+			textarea.blur();
 		}
 	}
 
