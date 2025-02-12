@@ -1,8 +1,134 @@
 <script lang="ts">
   import FirebaseCssEditor from '$lib/components/FirebaseCssEditor.svelte';
   import Toolbox from '$lib/components/Toolbox.svelte';
+  import { CSS_RESET } from '$lib/lessons/css-reset';
+  const listHTML = `
+<ul>
+  <li>
+    <svg class="heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/></svg>
+    <div class="text">List Item</div>
+    <div>
+    <svg class="menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z"/></svg>
+  </li>
+  <li>
+    <svg class="heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/></svg>
+    <div class="text">List Item</div>
+    <div>
+    <svg class="menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z"/></svg>
+  </li>
+  <li>
+    <svg class="heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/></svg>
+    <div class="text">List Item</div>
+    <div>
+    <svg class="menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z"/></svg>
+  </li>
+</ul>
+`
+const baseListCSS = `/* The menu and heart icons are svg elements. */
+svg {
+  width: 24px;
+  height: 24px;
+}
+.heart {
+  fill: pink;
+}
+.menu {
+  fill: #777;
+}
+.text {
+  color: orange;
+}
+/* The list items are styled with a class of list-item */
+ul {
+  border: 2px solid blue;
+}
+li {
+  border: 2px solid orange;
+}
+`
+  
 </script>
 
 # Lists of Things
 
-In this lesson, we'll explore how to style `<ul>` and `<ol>` lists and override their default browser styling.
+## Overview
+
+Implementing and styling lists, particularly interactable lists, seperate the hackers from the seasoned pros. On very big reason for this is that pros will often use `<ul>` and `<ol>` elements when implementing a list which generally works better with accessibility software and SEO.
+
+When first implementing a custom styled listed you might run into some early road blocks; however, we'll explore today an easy way to set yourself up for success.
+
+## A Real Example
+
+Below is an example from the [Material Design](https://m2.material.io/components/lists) a popular design system for building web and android apps. If you inspect the html you'll find that it's implemented with `<ul>` and `<li>` elements even when there's icons, buttons, and animations like the ripple that appears when a user interacts with it.
+
+<iframe src="https://material.io/inline-tools/list" style="width: 100%; height: 300px; margin-top: 1rem; margin-bottom: 1rem;" />
+
+## Let's Try and Recreate It
+
+For this code challenge we'll be recreating the above example with the before and after icons. This challenge is about implementing it with `<ul>` and `<li>` so feel free to use the centering patterns provided. **If you've never styled ul and li elements it may be harder than it looks.**
+
+<FirebaseCssEditor
+  initialCss={baseListCSS}
+  htmlContent={listHTML}
+  rows={24}
+/>
+
+<Toolbox title="Use My Favorite Centering Pattern #1">
+
+Use Flexbox to space the items evenly and center them vertically.
+
+<FirebaseCssEditor
+  initialCss={`${baseListCSS}
+li {
+  display: flex;
+  align-items: center;
+}
+.text {
+  width: 100%;
+}
+`}
+  htmlContent={listHTML}
+  rows={10}
+/>
+
+</Toolbox>
+
+<Toolbox title="Hint #1">
+
+List items come with some default styling that we'll need to override.
+
+<FirebaseCssEditor
+  initialCss={`/* list-style will remove the bullet points */
+li {
+  list-style-type: none;
+}
+`}
+  htmlContent={`<ul><li>List Item</li><li>List Item</li></ul>`}
+  rows={4}
+/>
+
+</Toolbox>
+
+<Toolbox title="Hint #2">
+
+You may need to remove padding or margin from ul or ol tags. You can use browser dev tools to inspect elements and see margin and padding.
+
+</Toolbox>
+
+# Stuck?
+
+Only check it out if you’re **giving up on the code challenge** or instructed to do so.
+
+<Toolbox title="Pro Tip!">
+
+So even seasoned frontend developers sometimes forget about styling the specifics of centain things like `<ul>` and `<ol>` elements. The reasons is because we often work on top of CSS resets that give us a better starting point. Try the exercise again but with a CSS reset imported under the hood.
+
+<FirebaseCssEditor
+  initialCss={`${baseListCSS}${CSS_RESET}`}
+  htmlContent={listHTML}
+  rows={40}
+/>
+
+</Toolbox>
+
+

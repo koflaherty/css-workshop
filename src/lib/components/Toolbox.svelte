@@ -41,11 +41,6 @@
 		border-top: 1px solid #ccc;
 	}
 
-	:global(.toolbox-content code) {
-		font-size: 13px;
-		padding: 0 0.25rem;
-	}
-
 	:global(.toolbox-content ul) {
 		list-style: none;
 		padding: 0;

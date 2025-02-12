@@ -8,6 +8,7 @@
 	--text-color: #333333; /* Dark text */
 	--code-background: #e8e8e8; /* Light background for code blocks */
 	--code-text-color: #d63384; /* Code text color */
+	--link-text-color: #d63384; /* Code text color */
 }
 
 h1,
@@ -39,6 +40,11 @@ code {
 }
 
 a {
-	color: #007acc;
+	color: var(--link-text-color);
 	text-decoration: none;
+	/* text-decoration: underline; */
+}
+
+a:hover {
+	text-decoration: underline;
 }
