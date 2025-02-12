@@ -135,7 +135,7 @@
 		right: 0;
 		bottom: 0;
 		pointer-events: none; /* so clicks pass through to the textarea */
-		overflow: auto;
+		overflow: hidden;
 		background-color: var(--code-background);
 	}
 
@@ -156,7 +156,7 @@
 	<div class="editor-container">
 		<!-- Highlighted code layer -->
 		<pre class="highlighted-code" bind:this={preEl}><code
-				>{@html highlightedCss}</code
+				>{@html highlightedCss}<br/></code
 			></pre>
 		<!-- Transparent textarea layer -->
 		<textarea
